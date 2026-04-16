@@ -29,7 +29,7 @@ def run_sample_inference(image_path):
             print(f"{det['denomination']:<15} | {det['confidence']:<10.2f} | {bbox_str}")
 
 # --- Execution ---
-test_image_path = "test_images\\20_16_jpg.rf.c585e30f37f423ac3789ff931aeef680.jpg" 
+test_image_path = "test_images\\500_16_jpg.rf.3858f254d867437975c6f942f3d9b90b.jpg" 
 try:
     run_sample_inference(test_image_path)
 except FileNotFoundError:
