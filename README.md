@@ -1,67 +1,66 @@
-# Bangladeshi Taka Detection API
+🇧🇩 Bangladeshi Taka Detection API
+This repository contains a high-performance REST API for detecting Bangladeshi Taka notes and coins. The project leverages a fine-tuned YOLOv8 model integrated with FastAPI and is fully containerized using Docker for seamless deployment across different environments.
 
-## Project Structure
-The following is the structure of the project:
+🛠️ Installation & Setup
+1. Prerequisites
+Docker Desktop: Ensure it is installed and the engine is running.
 
-```plaintext
-TakaDetection/
-├── src/
-│   ├── app.py
-│   ├── utils.py
-│   └── models/
-│       └── model.h5
-├── requirements.txt
-└── README.md
-```
+Git: Required for cloning the repository and version control.
 
-## Installation Instructions
-To set up the Bangladeshi Taka Detection API, follow these steps:
+2. Building and Running (The Easy Way)
+Using Docker Compose is the recommended method as it handles networking, volume mounting, and port mapping automatically.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Md-Musfiq-Hossain/TakaDetection.git
-   cd TakaDetection
-   ```
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-3. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+Bash
+# Navigate to the project root and run:
+docker compose up --build
+3. Alternative (Manual Build)
+If you prefer using standard Docker CLI commands, follow these two steps:
 
-## API Usage
-To use the API, follow the steps below:
+Build the image:
 
-1. Start the server:
-   ```bash
-   python src/app.py
-   ```
-2. Send a POST request to the API endpoint with the image of the Taka:
-   ```http
-   POST /detect
-   Content-Type: multipart/form-data
-   ```
-3. The response will include:
-   - `status`: indicates success or failure
-   - `message`: additional information
-   - `result`: detected denomination if successful
+Bash
+docker build -t taka-detection-app .
+Run the container:
 
-Example of a successful response:
-```json
+Bash
+docker run -p 8000:8000 taka-detection-app
+🚀 How to Use the API
+Once the container is active, the API is accessible at http://localhost:8000.
+
+1. Interactive Documentation (Swagger UI)
+FastAPI provides a built-in interface to test your endpoints without needing Postman. Visit http://localhost:8000/docs in your browser:
+
+Locate and expand the POST /predict endpoint.
+
+Click the "Try it out" button.
+
+Upload a supported image (JPG/PNG) of Bangladeshi currency.
+
+Click Execute to see the real-time detection results.
+
+2. API Endpoint Details
+Endpoint: /predict
+
+Method: POST
+
+Request Type: multipart/form-data (Binary Image File)
+
+Example Success Response:
+JSON
 {
   "status": "success",
-  "message": "Denomination detected.",
-  "result": "100 Taka"
+  "count": 1,
+  "detections": [
+    {
+      "denomination": "5 taka coin",
+      "confidence": 0.92,
+      "bbox": [120.5, 45.2, 300.1, 250.8]
+    }
+  ]
 }
-```
+📝 Troubleshooting
+Port Conflicts: If you get a "Port already in use" error, ensure no other instance of Uvicorn or another web server is running on port 8000.
 
-## Troubleshooting Information
-- If you encounter any issues, please check the following:
-  - Ensure the required libraries are installed as listed in `requirements.txt`.
-  - Check if the server is running on the correct port.
-  - Verify that the image provided is valid and clear.
+Path Errors: The application is configured to use Linux-style forward slashes (/) for compatibility inside the Docker container. Ensure your local main.py matches this configuration.
 
-For further assistance, you can raise an issue in the GitHub repository or contact support.
+Memory Issues: YOLO models require sufficient RAM. Ensure Docker Desktop is allocated at least 2GB of memory for optimal performance.
