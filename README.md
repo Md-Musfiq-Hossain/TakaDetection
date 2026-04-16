@@ -19,8 +19,8 @@ TakaDetection/
 ```
 # 🛠️ Installation & Setup
 ## 1. Prerequisites
-'. Docker Desktop: Must be installed and running on your host machine.'
-'.Git: Used for repository management.'
+* Docker Desktop: Must be installed and running on your host machine.
+* Git: Used for repository management.
 
 ## 2. Building the Docker Image
 To build the image manually from the Dockerfile, open your terminal in the project root and run:
