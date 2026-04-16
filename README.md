@@ -84,7 +84,7 @@ FastAPI provides a built-in interface to test your endpoints without needing Pos
 # 📝 Troubleshooting & Notes
 * Path Compatibility: The application uses Linux-style paths (weights/best.pt) to ensure it functions correctly within the Docker environment.
 
-*Port Conflict: If port 8000 is already in use by another application on your host machine, you can change the mapping (e.g., -p 8080:8000).
+* Port Conflict: If port 8000 is already in use by another application on your host machine, you can change the mapping (e.g., -p 8080:8000).
 
-*Hardware: Inference is performed on the CPU by default within the container to ensure compatibility across different host machines.
+* Hardware: Inference is performed on the CPU by default within the container to ensure compatibility across different host machines.
 
