@@ -1,0 +1,11 @@
+services:
+  taka-api:
+    build: .
+    container_name: taka_detection_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/project
+    environment:
+      - WATCHFILES_FORCE_POLLING=true 
+    restart: always
